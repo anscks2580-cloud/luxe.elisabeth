@@ -30,9 +30,10 @@
   function initFabric() {
     const F = window.LuxeFabric, c = document.getElementById('fabricHero'); if (!F || !c) return;
     let hero;
-    try { hero = new F.Fabric(c, { bg: '#F1ECE4', end: '#F8F5F0', fade: 1, swag: 1 }); }
+    try { hero = new F.Fabric(c, { bg: '#ECE6DC', end: '#F5F1EB', fade: 1, swag: 1, breeze: coarse }); }
     catch (e) { c.remove(); console.warn('원단 효과를 끄고 정지 이미지로 대체합니다', e.message); return; }
     if (reduce || coarse) return;
+    // 마우스: 원단의 주름·자락이 밀리고(가로), 겹 사이 깊이가 달라짐(세로)
     addEventListener('pointermove', e => { if (e.pointerType === 'mouse') hero.pointer(e.clientX, e.clientY); }, { passive: true });
   }
 
