@@ -25,41 +25,15 @@
   const seasonName = s => s ? `${s.title} ${s.year || ''}`.trim() : '';
   const catNames = (d, cats) => d.categories.map(c => cats[c] || c).join(' · ');
 
-  /* ───────── 1. 원단 ───────── */
-  const fabrics = [];
-  function initFabric(data) {
-    const F = window.LuxeFabric; if (!F) return;
-    const cfg = data.raw.fabric || {};
-    const make = (id, opt) => {
-      const c = document.getElementById(id); if (!c) return null;
-      try { const f = new F.Fabric(c, opt); fabrics.push(f); return f; }
-      catch (e) { c.remove(); console.warn('원단 효과를 끄고 정지 이미지로 대체합니다', e.message); return null; }
-    };
-    const hero = make('fabricHero', { intensity: 1.1, bg: '#F4EFE7', laceScale: (cfg.laceScale || 1.05) * (mobile() ? 1.35 : 1), focus: 0.28, focusAt: mobile() ? [0.5, 0.86] : [0.2, 0.74] });
-    const house = make('fabricHouse', { intensity: 0.85, bg: '#F4EFE7', laceScale: (cfg.laceScale || 1.05) * 1.2, scale: coarse ? 0.45 : 0.55, cols: 36, focus: 0 });
-    const lace = () => {
-      const src = cfg.laceTexture || window.LUXE_LACE_DATA;
-      if (src) fabrics.forEach(f => f.setLace(src, !!cfg.lacePhoto && !!cfg.laceTexture));
-    };
-    if (window.LUXE_LACE_DATA || cfg.laceTexture) lace(); else document.addEventListener('DOMContentLoaded', lace, { once: true });
-    if (hero && !reduce) {
-      // 첫 화면 연출: 바람이 원단을 한 번 쓸고 지나간다
-      setTimeout(() => hero.sweep(-0.05, 0.42, 0.85, 0.62, 2200, 1.0), 500);
-    }
-    if (reduce) return;
-    addEventListener('pointermove', e => { if (e.pointerType === 'touch') return; fabrics.forEach(f => f.pointer(e.clientX, e.clientY)); }, { passive: true });
-    addEventListener('touchmove', e => { const t = e.touches[0]; if (t) fabrics.forEach(f => f.pointer(t.clientX, t.clientY)); }, { passive: true });
-    addEventListener('touchend', () => fabrics.forEach(f => f.ptr = null), { passive: true });
-    // 터치 기기: 스크롤 속도를 원단을 가로지르는 바람으로
-    if (coarse) {
-      let ly = scrollY, lt = 0;
-      addEventListener('scroll', () => {
-        const now = performance.now(), dy = scrollY - ly; ly = scrollY;
-        if (now - lt < 260 || Math.abs(dy) < 4) return; lt = now;
-        fabrics.forEach(f => { if (!f.visible) return; const y = 0.3 + Math.random() * 0.5, dir = Math.random() < 0.5 ? 1 : -1;
-          f.sweep(dir > 0 ? -0.1 : 1.1, y, dir > 0 ? 1.1 : -0.1, y - Math.sign(dy) * 0.25, 1500, Math.min(1, 0.35 + Math.abs(dy) / 120)); });
-      }, { passive: true });
-    }
+  /* ───────── 1. 원단 ─────────
+   * 첫 화면에만 움직이는 원단(WebGL). 다른 구역은 같은 원단의 정지 그림자(css)를 은은하게 이어 쓴다. */
+  function initFabric() {
+    const F = window.LuxeFabric, c = document.getElementById('fabricHero'); if (!F || !c) return;
+    let hero;
+    try { hero = new F.Fabric(c, { bg: '#F1ECE4', end: '#F8F5F0', fade: 1, swag: 1 }); }
+    catch (e) { c.remove(); console.warn('원단 효과를 끄고 정지 이미지로 대체합니다', e.message); return; }
+    if (reduce || coarse) return;
+    addEventListener('pointermove', e => { if (e.pointerType === 'mouse') hero.pointer(e.clientX, e.clientY); }, { passive: true });
   }
 
   /* ───────── 2. 첫 화면 슬라이드 ───────── */
@@ -282,7 +256,7 @@
 
   loadData().then(raw => {
     const data = prepare(raw || { seasons: [], dresses: [] });
-    initFabric(data);
+    initFabric();
     initSlider(data);
     renderNew(data);
     renderSeasons(data);

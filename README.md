@@ -8,14 +8,12 @@
 |---|---|
 | `index.html` | 화면 뼈대 |
 | `css/style.css` | 디자인 |
-| `js/fabric.js` | 첫 화면·브랜드 구역의 움직이는 원단(WebGL) |
+| `js/fabric.js` | 첫 화면의 걸려 있는 원단(WebGL) — 천장 스왜그와 커튼이 천천히 흔들림 |
 | `js/site.js` | 데이터를 읽어 각 구역을 만드는 코드 |
-| `js/lace-texture.js` | 기본 레이스 텍스처(파일을 직접 열어도 동작하도록 데이터 형태로 넣음) |
 | `data/dresses.js` | **드레스·시즌 데이터 — 새 드레스는 여기만 고치면 됩니다** |
 | `images/dresses/` | 드레스 대표 사진 |
 | `images/details/` | 드레스 디테일 사진 |
-| `images/fabric/` | 레이스 텍스처 원본, 웹GL이 안 될 때 쓰는 대체 이미지 |
-| `tools/make_lace.py` | 기본 레이스 텍스처 생성 스크립트 |
+| `images/fabric/` | 원단 정지 이미지(웹GL이 안 될 때 대체용), 아래 구역에 이어지는 원단 그림자 |
 
 ## 새 드레스 추가하기
 
@@ -43,13 +41,6 @@
 
 현재 시즌 구분·입고일은 예시입니다(`sample: true`). 실제 값으로 바꾼 뒤 `sample: false` 로 바꾸면 화면의 '예시 데이터' 표시가 사라집니다.
 주소·운영 시간·예약 방법은 `brand` 항목에 넣으면 방문 안내와 하단에 자동으로 표시됩니다.
-
-## 레이스 텍스처 바꾸기
-
-`data/dresses.js` 의 `fabric` 항목:
-
-- `laceTexture: 'images/fabric/파일.jpg', lacePhoto: true` → 실제 레이스 사진 사용(어두운 바탕 위 흰 레이스 사진, 정사각형 1024px 권장)
-- `laceScale` → 레이스 무늬 크기(클수록 무늬가 작아짐)
 
 ## 관리자 페이지·DB 연결
 

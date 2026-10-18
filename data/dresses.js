@@ -27,12 +27,6 @@ window.LUXE_DATA = {
     phone: null
   },
 
-  /* 원단 효과에 쓰는 레이스 텍스처.
-   *  laceTexture: null 이면 기본 레이스(js/lace-texture.js)를 씁니다.
-   *  실제 레이스 사진을 쓰려면 정사각형(예: 1024×1024) 사진을 images/fabric/ 에 넣고
-   *  laceTexture: 'images/fabric/파일명.jpg', lacePhoto: true 로 바꾸세요.
-   *  (어두운 바탕 위에 흰 레이스를 찍은 사진이 가장 잘 보입니다. 서버에 올렸을 때 적용됩니다.) */
-  fabric: { laceTexture: null, lacePhoto: false, laceScale: 1.05 },
 
   seasons: [
     { id: '2026-fw', title: 'Fall / Winter', year: '2026', period: '2026.09 —', order: 1, visible: true,

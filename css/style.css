@@ -3,9 +3,9 @@
  * 색과 글자는 절제하고, 사진과 원단은 크게.
  */
 :root{
-  --paper:#FCFBF8;        /* 바탕: 미색이 살짝 도는 화이트 */
-  --silk:#F4EFE7;         /* 원단 바탕: 실크 아이보리 */
-  --ivory:#F6F2EB;        /* 보조 면 */
+  --paper:#F8F5F0;        /* 페이지 바탕: 원단과 같은 계열의 웜 화이트 */
+  --silk:#F1ECE4;         /* 걸려 있는 원단의 색 */
+  --ivory:#F2EDE5;        /* 보조 면(원단 그림자 쪽) */
   --mist:#E6E1D9;         /* 웜 그레이 선 */
   --stone:#8A837A;        /* 보조 글자 */
   --ink:#26231F;          /* 본문 글자 */
@@ -63,15 +63,22 @@ p{margin:0}
 /* ───── 01 첫 화면 ───── */
 .hero{position:relative;height:100svh;min-height:640px;max-height:1200px;overflow:hidden;background:var(--silk)}
 .fabric{position:absolute;inset:0;width:100%;height:100%;display:block}
-.fabric-fallback{position:absolute;inset:0;background:var(--silk) url("../images/fabric/lace-preview.webp") center/720px repeat}
+.fabric-fallback{position:absolute;inset:0;background:var(--silk) url("../images/fabric/drape-still.webp") center top/cover no-repeat}
+.fabric-fallback::after{content:"";position:absolute;inset:auto 0 0;height:22%;background:linear-gradient(transparent,var(--paper))}
 .hero .fabric{z-index:1}
-.stage{position:absolute;z-index:2;top:var(--nav-h);right:0;bottom:0;width:min(55vw,calc((100svh - var(--nav-h)) * .88));overflow:hidden}
+.stage{position:absolute;z-index:2;top:0;right:0;bottom:0;width:min(58vw,calc(100svh * .86));overflow:hidden;
+  /* 사진 가장자리를 원단 쪽으로 풀어 한 장면처럼: 왼쪽·위·아래를 부드럽게 */
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 20%),linear-gradient(to bottom,transparent 0,#000 calc(var(--nav-h) + 90px),#000 90%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,transparent 0,#000 20%),linear-gradient(to bottom,transparent 0,#000 calc(var(--nav-h) + 90px),#000 90%,transparent 100%);
+  mask-composite:intersect}
+.stage::after{content:"";position:absolute;inset:0;z-index:3;background:var(--silk);mix-blend-mode:multiply;opacity:.14;pointer-events:none}
 .slide{position:absolute;inset:0;margin:0;opacity:0;transform:translate3d(0,2%,0);transition:opacity 1.8s var(--ease),transform 2.6s var(--ease)}
 .slide.on{opacity:1;transform:none;z-index:2}
 .slide.off{opacity:0;transform:none;z-index:1;transition:opacity 1.8s var(--ease)}
-.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 9s linear}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 9s linear;filter:sepia(.07) saturate(.92) contrast(.96) brightness(1.02)}
 .slide.on img,.slide.off img{transform:scale(1)}
-.hero-copy{position:absolute;z-index:3;left:var(--pad);bottom:clamp(28px,6vh,72px);width:calc(100% - min(55vw,calc((100svh - var(--nav-h)) * .88)) - var(--pad) - 40px);display:flex;flex-direction:column;gap:22px;pointer-events:none}
+.hero-copy{position:absolute;z-index:3;left:var(--pad);bottom:clamp(28px,6vh,72px);width:calc(100% - min(58vw,calc(100svh * .86)) * .82 - var(--pad) - 24px);display:flex;flex-direction:column;gap:22px;pointer-events:none}
 .hero-copy > *{pointer-events:auto}
 .wordmark{margin:0;font-family:var(--display);font-weight:400;line-height:.86}
 .wordmark .w1{display:block;font-size:clamp(64px,8.4vw,132px);letter-spacing:.02em;margin-left:-.04em}
@@ -141,7 +148,12 @@ p{margin:0}
 .empty{color:var(--stone);font-size:14px;padding-block:40px}
 
 /* ───── 04 시그니처 ───── */
-.sig{background:var(--ivory)}
+.sig{background:linear-gradient(var(--paper),var(--ivory) 240px,var(--ivory) calc(100% - 240px),var(--paper))}
+/* 원단의 정지 그림자: 첫 화면의 커튼 주름이 아래 구역 위쪽에 은은하게 이어짐 */
+.drape{position:relative}
+.drape::before{content:"";position:absolute;inset:0 0 auto;height:min(70vh,560px);background:url("../images/fabric/drape-shade.webp") center top/cover no-repeat;mix-blend-mode:multiply;opacity:.6;pointer-events:none;-webkit-mask-image:linear-gradient(transparent 0,#000 32%,transparent 100%);mask-image:linear-gradient(transparent 0,#000 32%,transparent 100%)}
+.drape.soft::before{opacity:.38;height:min(50vh,420px)}
+.drape > .wrap{position:relative}
 .sg{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(16px,2vw,32px);align-items:start}
 .sg .s1{grid-column:1/8;grid-row:1/3}
 .sg .s2{grid-column:9/12;grid-row:1;margin-top:6vh}
@@ -154,8 +166,7 @@ p{margin:0}
 .sg .det .cap{font-size:11px;letter-spacing:.24em;text-transform:uppercase}
 
 /* ───── 05 브랜드 ───── */
-.house{position:relative;overflow:hidden;background:var(--silk)}
-.house .fabric{z-index:0}
+.house{position:relative;overflow:hidden;background:linear-gradient(var(--paper),var(--ivory) 200px,var(--ivory) calc(100% - 200px),var(--paper))}
 .house .wrap{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(16px,2vw,32px);align-items:center}
 .house .ph{grid-column:2/6}
 .house .text{grid-column:7/12;display:flex;flex-direction:column;gap:26px}
@@ -216,7 +227,9 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px 32px
 @media (max-width:900px){
   body{font-size:14.5px}
   .hero{height:100svh;min-height:600px}
-  .stage{left:0;width:auto;height:62svh;bottom:auto}
+  .stage{left:0;width:auto;height:66svh;bottom:auto;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 calc(var(--nav-h) + 40px),#000 80%,transparent 100%);
+    mask-image:linear-gradient(to bottom,transparent 0,#000 calc(var(--nav-h) + 40px),#000 80%,transparent 100%)}
   .hero-copy{left:var(--pad);right:var(--pad-r);width:auto;bottom:max(22px,env(safe-area-inset-bottom,0px));gap:14px}
   .wordmark .w1{font-size:clamp(54px,17vw,96px)}
   .wordmark .w2{margin-top:10px;letter-spacing:.6em}
