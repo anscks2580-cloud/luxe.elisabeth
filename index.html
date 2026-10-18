@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LUXE ELISABETH</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="LUXE ELISABETH — 레이스와 비즈, 튤의 섬세함을 담은 웨딩드레스. 시즌별 신규 입고 드레스와 컬렉션.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Noto+Sans+KR:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="LUXE ELISABETH 처음으로">LUXE ELISABETH</a>
+    <nav aria-label="주요 메뉴">
+      <ul>
+        <li><a href="#new">New</a></li>
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#signature">Signature</a></li>
+        <li><a href="#house">House</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="sheet"><span></span><span></span></button>
+  </div>
+</header>
+<div class="sheet" id="sheet" aria-hidden="true">
+  <a href="#new">New Arrivals<small>신규 입고</small></a>
+  <a href="#collection">Collection<small>시즌별 컬렉션</small></a>
+  <a href="#signature">Signature<small>시그니처 드레스</small></a>
+  <a href="#house">House<small>브랜드</small></a>
+  <a href="#visit">Visit<small>방문 상담</small></a>
+  <a class="ig" href="https://www.instagram.com/luxe.elisabeth/" target="_blank" rel="noopener">Instagram @luxe.elisabeth</a>
+</div>
+
+<main id="top">
+  <!-- 01 첫 화면: 원단(뒤) → 드레스 패널 → 글자 -->
+  <section class="hero" aria-label="LUXE ELISABETH">
+    <div class="fabric-fallback" aria-hidden="true"></div>
+    <canvas class="fabric" id="fabricHero" aria-hidden="true"></canvas>
+    <div class="stage" id="stage" aria-roledescription="carousel" aria-label="대표 드레스"></div>
+    <span class="cue load d4" aria-hidden="true">Haute couture bridal</span>
+    <div class="hero-copy">
+      <h1 class="wordmark load"><span class="w1">LUXE</span><span class="w2">ELISABETH</span></h1>
+      <p class="tagline load d2">Elegance, woven in light.</p>
+      <div class="ctrl load d3" id="ctrl">
+        <span class="count" id="slCount">01 / 01</span>
+        <span class="bar" aria-hidden="true"><i id="slBar"></i></span>
+        <span class="btns">
+          <button type="button" id="slPrev" aria-label="이전 드레스"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5"/></svg></button>
+          <button type="button" id="slPause" aria-label="자동 넘김 멈춤" aria-pressed="false"><svg viewBox="0 0 16 16"><path id="slPauseIcon" d="M6 4v8M10 4v8"/></svg></button>
+          <button type="button" id="slNext" aria-label="다음 드레스"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
+        </span>
+        <span class="now" id="slNow" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 신규 입고 -->
+  <section class="sec" id="new" aria-labelledby="newTitle">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="label rv">New Arrivals</span>
+          <h2 id="newTitle" class="rv">Just <em>arrived.</em></h2>
+        </div>
+        <div class="r rv">
+          <span class="s-meta" id="newMeta"></span>
+          <span class="sample" data-sample hidden>예시 데이터 · 시즌과 입고일 확인 필요</span>
+          <a class="more" href="#collection">전체 컬렉션 <i aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="na" id="newGrid"></div>
+    </div>
+  </section>
+
+  <!-- 03 시즌 컬렉션 -->
+  <section class="sec" id="collection" aria-labelledby="colTitle" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="label rv">Seasonal Collection</span>
+          <h2 id="colTitle" class="rv">The <em>collections</em></h2>
+        </div>
+        <div class="r rv"><span class="sample" data-sample hidden>예시 데이터 · 시즌 구분 확인 필요</span></div>
+      </div>
+      <div class="tabs rv" role="tablist" aria-label="시즌" id="tabs"></div>
+      <div class="season" id="season" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- 04 시그니처 -->
+  <section class="sig sec" id="signature" aria-labelledby="sigTitle">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="label rv">Signature Dresses</span>
+          <h2 id="sigTitle" class="rv">Lace <em>&amp;</em> light</h2>
+        </div>
+      </div>
+      <div class="sg" id="sigGrid"></div>
+    </div>
+  </section>
+
+  <!-- 05 브랜드 -->
+  <section class="house sec" id="house" aria-labelledby="houseTitle">
+    <canvas class="fabric" id="fabricHouse" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <figure class="ph rv"><img src="images/salon/salon-wall.webp" width="1076" height="1452" alt="LUXE 글자가 새겨진 살롱 벽 앞에서 새틴 드레스를 입은 신부" loading="lazy"></figure>
+      <div class="text">
+        <span class="label rv">The House</span>
+        <h2 id="houseTitle" class="rv">Chosen for the way they <em>hold the light.</em></h2>
+        <p class="rv">레이스의 결, 비즈가 빛을 받는 방향, 튤이 겹쳐지는 깊이. 가까이 볼수록 아름다운 드레스를 고릅니다.</p>
+        <ul class="mats rv"><li>Beading</li><li>Lace</li><li>Tulle</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 방문 -->
+  <section class="visit sec" id="visit" aria-labelledby="visitTitle">
+    <div class="wrap">
+      <figure class="ph rv"><img src="images/salon/salon-rack.webp" width="1498" height="1532" alt="살롱 행거에 걸린 레이스와 비즈 웨딩드레스들" loading="lazy"></figure>
+      <div class="text">
+        <span class="label rv">Visit</span>
+        <h2 id="visitTitle" class="rv">Try it on, <em>in person.</em></h2>
+        <p class="rv">마음에 드는 드레스가 있다면 드레스 번호와 함께 인스타그램 메시지로 문의해 주세요.</p>
+        <dl class="facts rv" id="facts"></dl>
+        <a class="cta rv" id="cta" href="https://www.instagram.com/luxe.elisabeth/" target="_blank" rel="noopener">인스타그램으로 상담 문의 <i aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-mark">LUXE<small>ELISABETH</small></div>
+    <ul class="f-links">
+      <li><a href="#new">New</a></li>
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#signature">Signature</a></li>
+      <li><a href="#visit">Visit</a></li>
+      <li><a href="https://www.instagram.com/luxe.elisabeth/" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+    <div class="f-meta"><span id="fAddr"></span><span>© LUXE ELISABETH</span></div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="드레스 자세히 보기" aria-hidden="true">
+  <div class="lb-view"><img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt=""></div>
+  <div class="lb-side">
+    <div class="top"><span class="label" id="lbId"></span><button type="button" class="txt" id="lbClose">Close</button></div>
+    <div>
+      <div class="lb-name" id="lbName"></div>
+      <div class="s-meta" id="lbMeta" style="margin-top:10px"></div>
+    </div>
+    <div class="lb-thumbs" id="lbThumbs"></div>
+    <a class="more" id="lbAsk" href="https://www.instagram.com/luxe.elisabeth/" target="_blank" rel="noopener">이 드레스 문의하기 <i aria-hidden="true"></i></a>
+    <div class="lb-nav"><button type="button" class="txt" id="lbPrev">Prev</button><button type="button" class="txt" id="lbNext">Next</button></div>
+  </div>
+</div>
+
+<script src="data/dresses.js"></script>
+<script src="js/fabric.js"></script>
+<script src="js/site.js"></script>
+<script src="js/lace-texture.js" defer></script>
+</body>
+</html>
