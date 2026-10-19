@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LUXE ELISABETH — Concept B</title>
+<meta name="description" content="LUXE ELISABETH — 직접 보고 고른 웨딩드레스. 럭스 소개, 바잉 브랜드, 시즌 컬렉션, 셀럽 착용, 스토어, 상담.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/concept-b.css?v=1">
+</head>
+<body class="cb">
+<a class="skip" href="#introduction">본문 바로가기</a>
+
+<!-- ───────── 상단 메뉴: 번호 + 영문 + 한글, 상담은 검정 칸으로 항상 보임 ───────── -->
+<header class="nav" id="nav">
+  <a class="nav-logo" href="#top" aria-label="LUXE ELISABETH 처음으로"><span data-logo="line">LUXE ELISABETH</span></a>
+  <nav class="nav-menu" aria-label="주요 메뉴">
+    <a href="#introduction"><span class="no">01</span><span class="en">Introduction</span><span class="ko">럭스 소개</span></a>
+    <a href="#buying"><span class="no">02</span><span class="en">Buying Brands</span><span class="ko">바잉 업체</span></a>
+    <a href="#collection"><span class="no">03</span><span class="en">Collection</span><span class="ko">컬렉션</span></a>
+    <a href="#celebrity"><span class="no">04</span><span class="en">Celebrity</span><span class="ko">셀럽 착용</span></a>
+    <a href="#stores"><span class="no">05</span><span class="en">Stores</span><span class="ko">스토어</span></a>
+  </nav>
+  <a class="nav-cta" href="#consultation"><span class="no">06</span><span class="en">Consultation</span><span class="ko">상담</span></a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="sheet"><span></span><span></span></button>
+  <span class="progress" aria-hidden="true"><i id="progress"></i></span>
+</header>
+
+<!-- 모바일 메뉴 -->
+<div class="sheet" id="sheet" aria-hidden="true">
+  <nav aria-label="전체 메뉴">
+    <a href="#introduction"><span class="no">01</span><span class="en">Introduction</span><span class="ko">럭스 소개 · CEO · 3개 업체</span></a>
+    <a href="#buying"><span class="no">02</span><span class="en">Buying Brands</span><span class="ko">바잉 업체·디자이너</span></a>
+    <a href="#collection"><span class="no">03</span><span class="en">Collection</span><span class="ko">시즌별 컬렉션</span></a>
+    <a href="#celebrity"><span class="no">04</span><span class="en">Celebrity</span><span class="ko">셀럽 착용</span></a>
+    <a href="#stores"><span class="no">05</span><span class="en">Stores</span><span class="ko">스토어 전경·위치</span></a>
+    <a href="#consultation"><span class="no">06</span><span class="en">Consultation</span><span class="ko">상담 문의</span></a>
+  </nav>
+  <a class="sheet-ig" href="https://www.instagram.com/luxe.elisabeth/" target="_blank" rel="noopener">Instagram @luxe.elisabeth</a>
+</div>
+
+<main id="top">
+
+  <!-- ═════════ 첫 화면 ═════════
+       왼쪽: 대형 로고 + 목차 / 가운데: 원단 띠(절제) / 오른쪽: 대표 사진 자리(재단선 표시) -->
+  <section class="hero" aria-label="LUXE ELISABETH">
+    <div class="hero-left">
+      <h1 class="hero-logo ld"><span data-logo="stack">LUXE ELISABETH</span></h1>
+      <div class="hero-bottom">
+        <p class="hero-line ld">Selected bridal couture.<span>직접 보고 고른 웨딩드레스</span></p>
+        <ol class="toc" aria-label="바로가기">
+          <li><a href="#introduction"><span class="no">01</span><span class="en">Luxe Introduction</span><span class="ko">럭스 소개</span></a></li>
+          <li><a href="#buying"><span class="no">02</span><span class="en">Buying Brands</span><span class="ko">바잉 업체</span></a></li>
+          <li><a href="#collection"><span class="no">03</span><span class="en">Collection</span><span class="ko">컬렉션</span></a></li>
+          <li><a href="#celebrity"><span class="no">04</span><span class="en">Celebrity</span><span class="ko">셀럽 착용</span></a></li>
+          <li><a href="#stores"><span class="no">05</span><span class="en">Stores</span><span class="ko">스토어</span></a></li>
+          <li><a href="#consultation"><span class="no">06</span><span class="en">Consultation</span><span class="ko">상담</span></a></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 원단 띠: 4차 원단(커튼·오간자 + 마우스 반응)을 흰색 톤으로, 천장 스왜그는 끔 -->
+    <div class="hero-fabric" aria-hidden="true"><canvas id="fabricB"></canvas></div>
+
+    <div class="hero-right">
+      <!-- IMAGE SLOT: HERO MAIN DRESS — 세로 3:4 (data/site-data.js 의 hero 에서 교체) -->
+      <div class="hero-stage" id="heroStage" aria-roledescription="carousel" aria-label="대표 드레스"></div>
+      <div class="hero-cap">
+        <a href="#collection" id="heroSeason"></a>
+        <div class="hero-ctrl" id="heroCtrl" hidden>
+          <span class="count" id="heroCount">01 / 01</span>
+          <span class="bar" aria-hidden="true"><i id="heroBar"></i></span>
+          <button type="button" id="heroPrev" aria-label="이전 사진"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5"/></svg></button>
+          <button type="button" id="heroPause" aria-label="자동 넘김 멈춤" aria-pressed="false"><svg viewBox="0 0 16 16"><path class="p1" d="M6 4v8M10 4v8"/><path class="p2" d="M5 3.5v9l7-4.5z"/></svg></button>
+          <button type="button" id="heroNext" aria-label="다음 사진"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ 01 럭스 소개 ═════════ -->
+  <section class="sec" id="introduction" data-nav aria-labelledby="introTitle">
+    <header class="bh rv">
+      <span class="bh-no">01</span>
+      <h2 id="introTitle"><span class="en">Luxe Introduction</span><span class="ko">럭스 소개</span></h2>
+      <span class="bh-meta">CEO / 3 Brands</span>
+    </header>
+
+    <div class="ceo" id="ceo">
+      <div class="ceo-id rv">
+        <p class="k">CEO</p>
+        <p class="ceo-name" id="ceoName"></p>
+      </div>
+      <!-- IMAGE SLOT: CEO PORTRAIT — 세로 4:5 (data/site-data.js ceo.portrait) -->
+      <div class="ceo-photo rv" id="ceoPhoto"></div>
+      <div class="ceo-text rv">
+        <blockquote class="ceo-quote" id="ceoQuote"></blockquote>
+        <div class="ceo-msg" id="ceoMsg"></div>
+      </div>
+    </div>
+
+    <!-- 3개 업체: 세로 패널 3장 — 누르거나 마우스를 올린 패널이 넓어지며 사진·소개가 열림 -->
+    <div class="brands" id="brands">
+      <div class="sub-h rv"><h3>Brands</h3><p>럭스 엘리자베스와 함께하는 세 곳</p></div>
+      <div class="acc" id="acc"></div>
+    </div>
+  </section>
+
+  <!-- ═════════ 02 바잉 업체 ═════════ -->
+  <section class="sec" id="buying" data-nav aria-labelledby="buyTitle">
+    <header class="bh rv">
+      <span class="bh-no">02</span>
+      <h2 id="buyTitle"><span class="en">Buying Brands</span><span class="ko">바잉 업체 · 디자이너</span></h2>
+      <span class="bh-meta" id="buyMeta"></span>
+    </header>
+    <div class="table-head rv" aria-hidden="true">
+      <span>No.</span><span>House</span><span>Designer</span><span>Origin</span><span>Since</span><span></span>
+    </div>
+    <div class="dir" id="buyList"></div>
+  </section>
+
+  <!-- ═════════ 03 컬렉션 ═════════ -->
+  <section class="sec" id="collection" data-nav aria-labelledby="colTitle">
+    <header class="bh rv">
+      <span class="bh-no">03</span>
+      <h2 id="colTitle"><span class="en">Collection</span><span class="ko">시즌별 컬렉션</span></h2>
+      <span class="bh-meta" id="colMeta"></span>
+    </header>
+    <div class="col-bar rv">
+      <div class="tabs" role="tablist" aria-label="시즌" id="tabs"></div>
+      <div class="view-toggle" role="group" aria-label="보기 방식">
+        <button type="button" data-view="grid" aria-pressed="true">Grid</button>
+        <button type="button" data-view="index" aria-pressed="false">Index</button>
+      </div>
+    </div>
+    <div class="season" id="seasonPanel" role="tabpanel" data-look-scope data-view="grid"></div>
+  </section>
+
+  <!-- ═════════ 04 셀럽 착용 ═════════ -->
+  <section class="sec" id="celebrity" data-nav aria-labelledby="celebTitle">
+    <header class="bh rv">
+      <span class="bh-no">04</span>
+      <h2 id="celebTitle"><span class="en">Celebrity</span><span class="ko">셀럽 착용</span></h2>
+      <span class="bh-meta" id="celebMeta"></span>
+    </header>
+    <div class="celeb-grid" id="celebGrid"></div>
+  </section>
+
+  <!-- ═════════ 05 스토어 ═════════ -->
+  <section class="sec" id="stores" data-nav aria-labelledby="storeTitle">
+    <header class="bh rv">
+      <span class="bh-no">05</span>
+      <h2 id="storeTitle"><span class="en">Stores</span><span class="ko">스토어 전경 · 위치</span></h2>
+      <span class="bh-meta" id="storeMeta"></span>
+    </header>
+    <div class="store-wrap">
+      <div class="store-list rv" role="tablist" aria-label="매장" id="storeList"></div>
+      <div class="store-detail" id="storeDetail" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ═════════ 06 상담 ═════════ -->
+  <section class="sec consult" id="consultation" data-nav aria-labelledby="conTitle">
+    <header class="bh rv">
+      <span class="bh-no">06</span>
+      <h2 id="conTitle"><span class="en">Consultation</span><span class="ko">상담 문의</span></h2>
+      <span class="bh-meta">Instagram DM</span>
+    </header>
+    <div class="consult-grid">
+      <div class="consult-intro rv">
+        <p class="consult-lead" id="consultLead"></p>
+        <ol class="steps" id="consultSteps"></ol>
+        <div class="ways" id="consultWays"></div>
+      </div>
+      <form class="consult-form rv" id="consultForm" novalidate>
+        <div class="f-grid">
+          <label><span>성함</span><input name="name" autocomplete="name"></label>
+          <label><span>예식 시기</span><input name="wedding" placeholder="예: 2027년 5월"></label>
+          <label><span>방문 희망 날짜</span><input type="date" name="date" id="cfDate"></label>
+          <label><span>희망 시간대</span><select name="time"><option value="">선택해 주세요</option><option>오전</option><option>오후</option><option>저녁</option></select></label>
+          <label><span>관심 분야</span><select name="interest" id="cfInterest"></select></label>
+          <label><span>관심 드레스 번호</span><input name="look" id="cfLook" placeholder="예: LE-0101"></label>
+          <label class="full"><span>남기실 말씀</span><textarea name="message" rows="3"></textarea></label>
+        </div>
+        <div class="preview-wrap">
+          <span class="pv-label">보내실 내용</span>
+          <pre class="preview" id="consultPreview" aria-live="polite"></pre>
+        </div>
+        <button type="submit" class="submit"><span>내용 복사하고 인스타그램으로 문의하기</span></button>
+        <p class="status" id="consultStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-top">
+    <span class="foot-logo" data-logo="line">LUXE ELISABETH</span>
+    <a class="foot-ig" href="https://www.instagram.com/luxe.elisabeth/" target="_blank" rel="noopener">Instagram @luxe.elisabeth</a>
+  </div>
+  <nav class="foot-links" aria-label="하단 메뉴">
+    <a href="#introduction">01 Introduction</a><a href="#buying">02 Buying Brands</a><a href="#collection">03 Collection</a>
+    <a href="#celebrity">04 Celebrity</a><a href="#stores">05 Stores</a><a href="#consultation">06 Consultation</a>
+  </nav>
+  <p class="foot-meta">© LUXE ELISABETH</p>
+</footer>
+
+<!-- 모바일 하단 상담 바 -->
+<a class="float-cta" id="floatCta" href="#consultation"><span>상담 문의</span><span class="en">Consultation</span></a>
+
+<!-- 드레스 상세 보기 -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="드레스 자세히 보기" aria-hidden="true">
+  <div class="lb-view" id="lbView"></div>
+  <div class="lb-side">
+    <div class="lb-top"><span class="lb-id" id="lbId"></span><span class="lb-count" id="lbCount"></span><button type="button" class="lb-txt" id="lbClose">Close ✕</button></div>
+    <div class="lb-head">
+      <p class="lb-name" id="lbName"></p>
+      <p class="lb-meta" id="lbMeta"></p>
+    </div>
+    <div class="lb-thumbs" id="lbThumbs"></div>
+    <a class="lb-ask" id="lbAsk" href="#consultation">이 드레스로 상담 문의하기</a>
+    <div class="lb-nav"><button type="button" class="lb-txt" id="lbPrev">Prev</button><button type="button" class="lb-txt" id="lbNext">Next</button></div>
+  </div>
+</div>
+
+<script src="js/logo.js?v=1"></script>
+<script src="data/site-data.js?v=1"></script>
+<script src="js/fabric.js?v=4"></script>
+<script src="js/concept-shared.js?v=1"></script>
+<script src="js/concept-b.js?v=1"></script>
+</body>
+</html>

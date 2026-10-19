@@ -45,3 +45,32 @@
 ## 관리자 페이지·DB 연결
 
 `js/site.js` 의 `loadData()` 함수만 서버 요청으로 바꾸면 됩니다. 서버는 `data/dresses.js` 와 같은 모양의 JSON을 돌려주면 됩니다.
+
+---
+
+## 리디자인 시안 (2026-10)
+
+기존 홈페이지(`index.html`)는 그대로 두고, 새 시안 두 개를 따로 만들었습니다.
+
+| 주소 | 방향 |
+|---|---|
+| `concept-a.html` | STYLE A. Emotional Couture — 아이보리·블러시, 세리프, 화보 잡지식 편집, 원단 적극 사용 |
+| `concept-b.html` | STYLE B. Modern Minimal — 흰 바탕·검정 선, 산세리프, 룩북 그리드, 원단은 첫 화면 세로 띠로 절제 |
+
+주소 뒤에 `?guides` 를 붙이면(예: `concept-a.html?guides`) 사진 자리 이름과 입력이 필요한 항목이 점선으로 표시됩니다. 일반 방문자에게는 보이지 않습니다.
+
+### 시안 파일
+
+| 경로 | 내용 |
+|---|---|
+| `data/site-data.js` | **두 시안 공용 데이터 — 글·사진·업체·매장·연락처는 여기만 고치면 됩니다** |
+| `js/concept-shared.js` | 공용 기능(사진 자리, 시즌 탭, 드레스 상세 보기, 상담 문의 작성, 현재 섹션 표시) |
+| `js/concept-a.js` · `css/concept-a.css` | 시안 A |
+| `js/concept-b.js` · `css/concept-b.css` | 시안 B |
+| `js/logo.js` | 로고(Cinzel 700 획을 도형으로 바꾼 것) — `images/logo/` 에 원본 SVG |
+| `js/fabric.js` | 기존 원단(WebGL) — 수정 없이 두 시안이 옵션만 달리해서 사용 |
+
+### 사진 넣기
+
+`data/site-data.js` 에서 `null` 로 되어 있는 사진 항목에 경로를 넣으면 됩니다. 각 항목 위에 `IMAGE SLOT:` 주석으로 어떤 사진이 들어갈지, 권장 비율이 적혀 있습니다.
+파일이 없거나 경로가 틀리면 깨진 아이콘 대신 빈 자리로 돌아갑니다. 첫 화면 사진을 2장 이상 넣으면 자동 넘김 슬라이드가 켜집니다.
