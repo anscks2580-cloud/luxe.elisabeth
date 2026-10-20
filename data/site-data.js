@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
- * LUXE ELISABETH — 새 시안(concept-a.html, concept-b.html) 공용 데이터
+ * LUXE ELISABETH — 홈페이지 데이터 (index.html · 시안 concept-a/b 공용)
  *
  * 두 시안은 이 파일 하나를 함께 읽습니다. 글·사진·업체·매장을 바꿀 때는 이 파일만 고치면 됩니다.
  * (기존 홈페이지 index.html 은 data/dresses.js 를 그대로 사용 — 이 파일과 무관)
@@ -34,13 +34,15 @@ window.LUXE_SITE = {
    * 2장 이상 넣으면 기존 사이트처럼 자동으로 넘어가는 슬라이드(이전·다음·멈춤 버튼, 진행 막대)가 켜집니다.
    * 1장이면 고정, 없으면 빈 사진 자리(시안 A는 원단이 비쳐 보이는 아치 창, 시안 B는 재단선 표시 프레임). */
   hero: [
-    // IMAGE SLOT: HERO MAIN DRESS (세로 3:4, 드레스 전신 — 인물은 화면 가운데 또는 약간 오른쪽)
-    { image: null, caption: null },
+    // IMAGE SLOT: HERO MAIN DRESS — 가로 사진(16:9~3:2) 권장. 세로 사진도 되지만 focus 로 잘리는 기준점을 정해 주세요.
+    // focus: '가로% 세로%' — 사진이 화면 비율에 맞춰 잘릴 때 남길 중심. 예) '50% 30%' = 가로 가운데, 위에서 30% 지점
+    { image: 'images/dresses/petal-train.webp', focus: '50% 30%', caption: null },
     // IMAGE SLOT: HERO DRESS 2
-    { image: null, caption: null },
+    { image: 'images/dresses/geometric-beading.webp', focus: '50% 20%', caption: null },
     // IMAGE SLOT: HERO DRESS 3
-    { image: null, caption: null }
+    { image: 'images/dresses/lace-crystal-ballgown.webp', focus: '50% 20%', caption: null }
   ],
+
 
   /* ───────── 01 럭스 소개 · CEO ───────── */
   ceo: {
