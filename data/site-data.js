@@ -90,37 +90,37 @@ window.LUXE_SITE = {
   /* ───────── 03 컬렉션 ─────────
    * seasons 가 탭이 되고, 각 시즌의 looks 가 룩북이 됩니다. 새 시즌은 맨 앞에 추가(order 가 작을수록 앞).
    * look: { id, name, designer, image(세로 2:3), details: [디테일 사진…], note }
-   * ※ 현재 시즌 이름·룩 수는 구조를 보여주기 위한 예시입니다(sample: true). */
+   * ※ 현재 시즌 이름·룩 수·사진(인스타그램 캡처)은 구조를 보여주기 위한 예시입니다(sample: true). 실제 컬렉션 사진으로 교체하세요. */
   seasons: [
     { id: '2026-fw', title: 'Fall / Winter', year: '2026', period: '2026.09 —', order: 1,
       // IMAGE SLOT: 2026 FW COLLECTION CAMPAIGN (가로 3:2)
       cover: null,
       note: null,
       looks: [
-        { id: 'LE-0101', name: null, designer: null, image: null, details: [null, null] },
-        { id: 'LE-0102', name: null, designer: null, image: null, details: [null] },
-        { id: 'LE-0103', name: null, designer: null, image: null, details: [] },
-        { id: 'LE-0104', name: null, designer: null, image: null, details: [null] },
-        { id: 'LE-0105', name: null, designer: null, image: null, details: [] },
-        { id: 'LE-0106', name: null, designer: null, image: null, details: [] }
+        { id: 'LE-0101', name: null, designer: null, image: 'images/dresses/petal-train.webp', details: ['images/details/floral-crystal-bodice.webp', 'images/details/lace-skirt-hem.webp'] },
+        { id: 'LE-0102', name: null, designer: null, image: 'images/dresses/geometric-beading.webp', details: ['images/details/geometric-beading-skirt.webp'] },
+        { id: 'LE-0103', name: null, designer: null, image: 'images/dresses/lace-crystal-ballgown.webp', details: [] },
+        { id: 'LE-0104', name: null, designer: null, image: 'images/dresses/crystal-corset.webp', details: ['images/details/crystal-corset-bodice.webp'] },
+        { id: 'LE-0105', name: null, designer: null, image: 'images/dresses/lace-off-shoulder.webp', details: ['images/details/lace-glove-ribbon.webp'] },
+        { id: 'LE-0106', name: null, designer: null, image: 'images/dresses/floral-crystal.webp', details: [] }
       ] },
     { id: '2026-ss', title: 'Spring / Summer', year: '2026', period: '2026.03 — 2026.08', order: 2,
       // IMAGE SLOT: 2026 SS COLLECTION CAMPAIGN (가로 3:2)
       cover: null,
       note: null,
       looks: [
-        { id: 'LE-0201', name: null, designer: null, image: null, details: [null] },
-        { id: 'LE-0202', name: null, designer: null, image: null, details: [] },
-        { id: 'LE-0203', name: null, designer: null, image: null, details: [] },
-        { id: 'LE-0204', name: null, designer: null, image: null, details: [] }
+        { id: 'LE-0201', name: null, designer: null, image: 'images/dresses/crystal-veil.webp', details: ['images/details/crystal-veil-close.webp'] },
+        { id: 'LE-0202', name: null, designer: null, image: 'images/dresses/tiered-tulle.webp', details: [] },
+        { id: 'LE-0203', name: null, designer: null, image: 'images/dresses/beaded-bodice-tulle.webp', details: [] },
+        { id: 'LE-0204', name: null, designer: null, image: 'images/dresses/lace-edged-veil.webp', details: [] }
       ] },
     { id: '2025', title: 'Collection', year: '2025', period: '2025', order: 3,
       // IMAGE SLOT: 2025 COLLECTION CAMPAIGN (가로 3:2)
       cover: null,
       note: null,
       looks: [
-        { id: 'LE-0301', name: null, designer: null, image: null, details: [null] },
-        { id: 'LE-0302', name: null, designer: null, image: null, details: [] },
+        { id: 'LE-0301', name: null, designer: null, image: 'images/dresses/corseted-lace.webp', details: [] },
+        { id: 'LE-0302', name: null, designer: null, image: 'images/dresses/beaded-lace-bodice.webp', details: [] },
         { id: 'LE-0303', name: null, designer: null, image: null, details: [] }
       ] }
   ],
@@ -143,7 +143,7 @@ window.LUXE_SITE = {
     { id: 'elisabeth-town', name: 'Elisabeth Town', nameKo: '엘리자베스 타운', region: null,
       address: null, hours: null, phone: null, mapUrl: null, note: null,
       // IMAGE SLOT: ELIZABETH TOWN STORE (외관/전경, 가로 21:9) · SHOWROOM 2장 (세로 4:5)
-      exterior: null, interior: [null, null] },
+      exterior: null, interior: ['images/salon/salon-rack.webp', 'images/salon/salon-wall.webp'] },
     // 지방 매장: 이름을 받기 전까지 placeholder 문구로 표시
     { id: 'regional-1', name: null, nameKo: null, placeholder: 'Regional Store', region: null,
       address: null, hours: null, phone: null, mapUrl: null, note: null,
