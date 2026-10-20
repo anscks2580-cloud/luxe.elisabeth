@@ -201,7 +201,7 @@ section[id]{scroll-margin-top:var(--head-s)}
 .st-no{color:var(--grey);font-size:12px;font-variant-numeric:tabular-nums}
 .st-t{font-weight:500}
 .st-d{color:#555;word-break:keep-all}
-.ways{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.ways{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--ink);padding-top:20px}
 .ways a{display:flex;gap:16px;font-size:14px}
 .ways .w-k{width:96px;color:var(--grey)}
 .consult-form{display:flex;flex-direction:column;gap:20px}

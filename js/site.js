@@ -148,7 +148,6 @@
   (function consult() {
     const c = data.consult;
     $('#consultLead').innerHTML = c.lead ? draft(c.draft, esc(c.lead)) : '';
-    $('#consultSteps').innerHTML = (c.steps || []).map((s, i) => `<li><span class="st-no">${pad(i + 1)}</span><span class="st-t">${esc(s.t)}</span><span class="st-d">${esc(s.d)}</span></li>`).join('');
     LX.initConsult(data);
   })();
 
