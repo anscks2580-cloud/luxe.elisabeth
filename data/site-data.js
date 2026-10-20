@@ -38,9 +38,9 @@ window.LUXE_SITE = {
     // focus: '가로% 세로%' — 사진이 화면 비율에 맞춰 잘릴 때 남길 중심. 예) '50% 30%' = 가로 가운데, 위에서 30% 지점
     { image: 'images/dresses/petal-train.webp', focus: '50% 30%', caption: null },
     // IMAGE SLOT: HERO DRESS 2
-    { image: 'images/dresses/geometric-beading.webp', focus: '50% 20%', caption: null },
+    { image: 'images/dresses/geometric-beading.webp', focus: '50% 12%', caption: null },
     // IMAGE SLOT: HERO DRESS 3
-    { image: 'images/dresses/lace-crystal-ballgown.webp', focus: '50% 20%', caption: null }
+    { image: 'images/dresses/lace-crystal-ballgown.webp', focus: '50% 15%', caption: null }
   ],
 
 
